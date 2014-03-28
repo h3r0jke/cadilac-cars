@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Мар 27 2014 г., 09:02
+-- Время создания: Мар 28 2014 г., 11:58
 -- Версия сервера: 5.6.16
 -- Версия PHP: 5.5.9
 
@@ -34,8 +34,21 @@ CREATE TABLE IF NOT EXISTS `info` (
   `benz` varchar(255) NOT NULL,
   `privod` varchar(255) NOT NULL,
   `color` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_model` (`id_model`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+
+--
+-- Дамп данных таблицы `info`
+--
+
+INSERT INTO `info` (`id`, `id_model`, `S`, `hp`, `benz`, `privod`, `color`) VALUES
+(1, 1, 1998, 276, 'Бензин', 'задний привод', 'черный металлик'),
+(2, 2, 3564, 311, 'Бензин', 'полный привод', 'черный металлик'),
+(3, 3, 3564, 304, 'бензин', 'полный привод', 'бежевый металлик'),
+(4, 4, 3000, 265, 'бензин', 'полный привод', 'белый металик'),
+(5, 5, 6156, 409, 'бензин', 'полный привод', 'черный металлик'),
+(6, 6, 6156, 409, 'бензин', 'полный привод', 'черный металик');
 
 -- --------------------------------------------------------
 
@@ -45,10 +58,25 @@ CREATE TABLE IF NOT EXISTS `info` (
 
 CREATE TABLE IF NOT EXISTS `model` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `model` int(11) NOT NULL,
-  `kuzov` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `model` varchar(255) NOT NULL,
+  `year` int(11) NOT NULL,
+  `kuzov` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `model_2` (`model`),
+  KEY `model` (`model`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
+
+--
+-- Дамп данных таблицы `model`
+--
+
+INSERT INTO `model` (`id`, `model`, `year`, `kuzov`) VALUES
+(1, 'ATS', 2013, ''),
+(2, 'CTS-V Coupe', 2012, ''),
+(3, 'CTS Coupe', 2013, ''),
+(4, 'SRX', 2013, ''),
+(5, 'ESCALADE', 2013, ''),
+(6, 'ESCALADE Hybrid', 2013, '');
 
 -- --------------------------------------------------------
 
@@ -58,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `model` (
 
 CREATE TABLE IF NOT EXISTS `photo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_avto` int(11) NOT NULL,
+  `id_model` int(11) NOT NULL,
   `photo` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
